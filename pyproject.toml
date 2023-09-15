@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "pypi-publish-secure"
+version = "0.1.0"
+description = "Template for demonstrating Publishing Private Python Packages on PyPI with Poetry"
+authors = ["prasad89 <vdbhaleraovb@gmail.com>"]
+readme = "README.md"
+
+# Only include cythonized files in final build
+include = ["SRC/**/*.so"]  # Replace SRC with the root of your source
+exclude = ["SRC/**/*.py"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+cython = "^3.0.0"
+
+[build-system]
+requires = ["poetry-core", "Cython" ,"setuptools"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.build]
+# The allows us to build C extensions (using Cython).
+generate-setup-file = false
+script = "build.py"
